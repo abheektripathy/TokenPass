@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.h1}>Member's Only Access</h1>
+      <h1 className={styles.h1}>Members Only Access</h1>
       <p className={styles.explain}>
         Thanks for being a member of our organization!
       </p>

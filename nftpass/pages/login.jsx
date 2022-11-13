@@ -13,7 +13,7 @@ export default function Login() {
       <h1 className={styles.h1} >ToknPass</h1>
       
       <p className={styles.explain}>
-         Authenticate easily using NFT's, access Exclusive content
+         Authenticate easily using NFTs, access Exclusive content
        
       </p>
 
