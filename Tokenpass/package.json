@@ -1,6 +1,6 @@
 {
   "name": "@toknpass/nftpass",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "bin" : "./bin/cli.js",
   "scripts": {
     "dev": "next dev",
