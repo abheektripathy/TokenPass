@@ -17,7 +17,7 @@ const runCommand = command => {
 }
 
 const reponame = process.argv[2];
-const gitCheckoutCommand = `git clone  --depth 1 https://github.com/abheektripathy/TokenPass.git ${reponame}` ;
+const gitCheckoutCommand = `git clone --depth 1 https://github.com/abheektripathy/TokenPass.git ${reponame}` ;
 const installDepsCommand = `cd ${reponame} && npm install `;
 
 console.log(`Cloning the template with repo name ${reponame}`);
