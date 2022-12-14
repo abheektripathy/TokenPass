@@ -7,6 +7,7 @@ you own a particular token you get to access the website's content.
 ## Initialize-
 
 `npx @toknpass/nftpass project-name`
+(package currently deprecated)
 
 
 
