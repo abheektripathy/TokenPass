@@ -35,6 +35,10 @@ jobs:
               with:
                   node-version: 16
                   registry-url: ${{ matrix.registry-url }}
+
+            - name: cat .npmrc cuz github package no work
+              run: cat ~/.npmrc
+
             - name: 🚀 publish
               run: npm publish --access public
               working-directory: Tokenpass
