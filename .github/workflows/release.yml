@@ -26,5 +26,6 @@ jobs:
             - name: 🚀 publish
               run: npm publish --access public
               working-directory: Tokenpass
+              continue-on-error: true
               env:
                   NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
