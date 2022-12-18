@@ -1,15 +1,20 @@
-
-
 name: "release"
 
 on:
     release:
         types: [published]
+    workflow_dispatch:
 
 jobs:
     release:
         name: 🚀 release
         runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                registry-url:
+                    - https://registry.npmjs.org
+                    - https://npm.pkg.github.com/
         steps:
             - name: 📚 checkout
               uses: actions/checkout@v3
@@ -17,7 +22,7 @@ jobs:
               uses: actions/setup-node@v3
               with:
                   node-version: 16
-                  registry-url: https://registry.npmjs.org
+                  registry-url: ${{ matrix.registry-url }}
             - name: 🚀 publish
               run: npm publish --access public
               working-directory: Tokenpass
