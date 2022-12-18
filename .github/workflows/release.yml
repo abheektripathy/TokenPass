@@ -1,15 +1,37 @@
-
-
 name: "release"
 
 on:
     release:
         types: [published]
+    workflow_dispatch:
+    push:
+        paths:
+            - ".github/workflows/release.yml"
+
+permissions:
+    contents: read
+    packages: write
 
 jobs:
     release:
         name: 🚀 release
         runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                registry:
+                    - github
+                    - npm
+                include:
+                    - registry: npm
+                      registry-url: https://registry.npmjs.org
+                      token_name: NPM_AUTH_TOKEN
+                      scope: "@toknpass"
+                    - registry: github
+                      registry-url: https://npm.pkg.github.com/
+                      token_name: GITHUB_TOKEN
+                      scope: "@roguedbear"
+
         steps:
             - name: 📚 checkout
               uses: actions/checkout@v3
@@ -17,9 +39,14 @@ jobs:
               uses: actions/setup-node@v3
               with:
                   node-version: 16
-                  registry-url: https://registry.npmjs.org
+                  registry-url: ${{ matrix.registry-url }}
+                  scope: ${{ matrix.scope }}
+            - name: cat .npmrc cuz github package no work
+              run: cat $NPM_CONFIG_USERCONFIG
+
             - name: 🚀 publish
               run: npm publish --access public
               working-directory: Tokenpass
+              continue-on-error: true
               env:
-                  NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+                  NODE_AUTH_TOKEN: ${{ secrets[matrix.token_name] }}
