@@ -38,7 +38,7 @@ jobs:
               with:
                   node-version: 16
                   registry-url: ${{ matrix.registry-url }}
-
+                  scope: "@toknpass"
             - name: cat .npmrc cuz github package no work
               run: cat $NPM_CONFIG_USERCONFIG
 
