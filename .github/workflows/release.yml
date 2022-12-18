@@ -30,7 +30,7 @@ jobs:
                     - registry: github
                       registry-url: https://npm.pkg.github.com/
                       token_name: GITHUB_TOKEN
-                      scope: "@roguedbear"
+                      scope: "@abheektripathy"
 
         steps:
             - name: 📚 checkout
