@@ -26,9 +26,11 @@ jobs:
                     - registry: npm
                       registry-url: https://registry.npmjs.org
                       token_name: NPM_AUTH_TOKEN
+                      scope: "@toknpass"
                     - registry: github
                       registry-url: https://npm.pkg.github.com/
                       token_name: GITHUB_TOKEN
+                      scope: "@roguedbear"
 
         steps:
             - name: 📚 checkout
@@ -38,7 +40,7 @@ jobs:
               with:
                   node-version: 16
                   registry-url: ${{ matrix.registry-url }}
-                  scope: "@toknpass"
+                  scope: ${{ matrix.scope }}
             - name: cat .npmrc cuz github package no work
               run: cat $NPM_CONFIG_USERCONFIG
 
