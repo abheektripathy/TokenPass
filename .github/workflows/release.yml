@@ -4,6 +4,9 @@ on:
     release:
         types: [published]
     workflow_dispatch:
+    push:
+        paths:
+            - ".github/workflows/release.yml"
 
 permissions:
     contents: read
@@ -37,7 +40,7 @@ jobs:
                   registry-url: ${{ matrix.registry-url }}
 
             - name: cat .npmrc cuz github package no work
-              run: cat ~/.npmrc
+              run: cat $NPM_CONFIG_USERCONFIG
 
             - name: 🚀 publish
               run: npm publish --access public
