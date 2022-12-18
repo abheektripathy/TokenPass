@@ -1,5 +1,5 @@
 {
-  "name": "@toknpass/nftpass",
+  "name": "@abheektripathy/nftpass",
   "version": "1.1.0",
   "bin" : "./bin/cli.js",
   "scripts": {
