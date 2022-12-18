@@ -16,14 +16,16 @@ jobs:
 
         strategy:
             matrix:
-                registry-url:
-                    - https://registry.npmjs.org
-                    - https://npm.pkg.github.com/
+                registry:
+                    - github
+                    - npm
                 include:
-                    - registry-url: https://registry.npmjs.org
-                      token: ${{ secrets.NPM_AUTH_TOKEN }}
-                    - registry-url: https://npm.pkg.github.com/
-                      token: ${{ secrets.GITHUB_TOKEN }}
+                    - registry: npm
+                      registry-url: https://registry.npmjs.org
+                      token_name: NPM_AUTH_TOKEN
+                    - registry: github
+                      registry-url: https://npm.pkg.github.com/
+                      token_name: GITHUB_TOKEN
 
         steps:
             - name: 📚 checkout
@@ -38,4 +40,4 @@ jobs:
               working-directory: Tokenpass
               continue-on-error: true
               env:
-                  NODE_AUTH_TOKEN: ${{ matrix.token }}
+                  NODE_AUTH_TOKEN: ${{ secrets[matrix.token_name] }}
